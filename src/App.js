@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import VoteView from './component/VoteView'
+import VoteView from './Pages/VoteView'
 
 function App() {
   return (

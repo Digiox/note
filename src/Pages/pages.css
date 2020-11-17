@@ -1,0 +1,44 @@
+@font-face {
+    font-family: "Mix Rego";
+    src: url('../fonts/Mix Rego.otf');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.custom-shape-divider-bottom-1605622063 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1605622063 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+}
+
+.custom-shape-divider-bottom-1605622063 .shape-fill {
+    fill: #FFFFFF;
+}
+.titleSection{
+    background-color: #6B9ED1;
+    position: relative;
+    height: 50vh;
+}
+.voteViewTitle {
+    padding-top: 20%;
+    font-family: "Mix Rego";
+}
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
