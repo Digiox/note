@@ -1,7 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
-import VoteView from './Pages/VoteView'
+import {VoteView} from './Pages/Pages'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+
 
 
 
