@@ -1,6 +1,6 @@
 @font-face {
-    font-family: "Mix Rego";
-    src: url('../fonts/Mix Rego.otf');
+    font-family: "Madina";
+    src: url('../fonts/Madina.otf');
 }
 
 * {
@@ -33,12 +33,31 @@
     position: relative;
     height: 50vh;
 }
-.voteViewTitle {
-    padding-top: 20%;
-    font-family: "Mix Rego";
+.voteViewTitle{
+    padding-top: 18%;
+    font-size: 3em !important;
+    font-family: "Madina";
+    text-align: center;
+}
+.input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 html {
   margin: 0;
   padding: 0;
   height: 100%;
+}
+.voteViewDesc{
+    text-align: center;
+   padding-top: 10%;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.voteSection {
+    margin: 10%;
+    display: flex;
+    justify-content: center;
 }

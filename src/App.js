@@ -1,13 +1,31 @@
 import logo from './logo.svg';
 import './App.css';
 import VoteView from './Pages/VoteView'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+
+
 
 function App() {
-  return (
-    <div className="App">
-     <VoteView/>
+  const theme = createMuiTheme({
+    palette: {
+    primary: {
+      main: "#6B9ED1"
 
-    </div>
+    },
+    radioGood: {
+      main: "#6B9ED1"
+    }
+    }
+  })
+  return (
+  <ThemeProvider theme={theme}>
+
+    <VoteView/>
+
+  </ThemeProvider>
+
+
+    
   );
 }
 
