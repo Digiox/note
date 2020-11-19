@@ -25,8 +25,8 @@ const useStyles = makeStyles({
     position: "relative",
     borderRadius: '50%',
     border: "2px solid #54F511",
-    width: '25px',
-    height: '25px',
+    width: '24px',
+    height: '24px',
     // backgroundColor: '#fffff',
     '$root.Mui-focusVisible &': {
       outline: '2px auto rgba(19,124,189,.6)',
@@ -40,7 +40,8 @@ const useStyles = makeStyles({
     backgroundColor: "#54F511",
     top: '50%',
     left: '50%',
-    transform: 'translate(-52%, -49%)',
+    transform: 'translate(-50%, -50%)',
+    
     width: "20px",
     height: "20px",
  
@@ -49,11 +50,15 @@ const useStyles = makeStyles({
     // },
   },
   icon2: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: '0px',
     position: "relative",
     borderRadius: '50%',
     border: "2px solid #FFD95B",
-    width: '25px',
-    height: '25px',
+    width: '24px',
+    height: '24px',
     // backgroundColor: '#fffff',
     '$root.Mui-focusVisible &': {
       outline: '2px auto rgba(19,124,189,.6)',
@@ -62,24 +67,30 @@ const useStyles = makeStyles({
 
   },
   checkedIcon2: {
+    borderRadius: "50px",
     position: "absolute",
     backgroundColor: "#FFD95B",
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
+    
     width: "20px",
     height: "20px",
-    borderRadius: "50%",
+ 
     // 'input:hover ~ &': {
     //   backgroundColor: '#54F511',
     // },
   },
   icon3: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: '0px',
     position: "relative",
     borderRadius: '50%',
     border: "2px solid #F26368",
-    width: '25px',
-    height: '25px',
+    width: '24px',
+    height: '24px',
     // backgroundColor: '#fffff',
     '$root.Mui-focusVisible &': {
       outline: '2px auto rgba(19,124,189,.6)',
@@ -88,14 +99,16 @@ const useStyles = makeStyles({
 
   },
   checkedIcon3: {
+    borderRadius: "50px",
     position: "absolute",
     backgroundColor: "#F26368",
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
+    
     width: "20px",
     height: "20px",
-    borderRadius: "50%",
+ 
     // 'input:hover ~ &': {
     //   backgroundColor: '#54F511',
     // },
