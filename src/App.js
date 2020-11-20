@@ -21,7 +21,7 @@ function App() {
   return (
   <ThemeProvider theme={theme}>
 
-    <VoteView/>
+    <VoteView serviceName={"Among Us France"} serviceDescription={"Trouvez rapidement des joueurs pour vos parties d'Among US !"} />
 
   </ThemeProvider>
 

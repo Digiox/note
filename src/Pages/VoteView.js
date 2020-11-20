@@ -138,13 +138,23 @@ const useStyles = makeStyles({
     paddingTop: '10%',
      paddingLeft: '5%',
      paddingRight: '5%',
+  },
+  titleSection: {
+    backgroundColor: '#6B9ED1',
+    position: 'relative',
+    height: '50vh',
+  },
+  voteSection: {
+    margin: '10%',
+    display: 'flex',
+    justifyContent: 'center',
   }
 });
 
 function VoteView(props) {
 
   const classes = useStyles();
-  const [value, setValue] = React.useState('female');
+  const [value, setValue] = React.useState(null);
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -152,25 +162,24 @@ function VoteView(props) {
 
   return (
     <div>
-      <section className='titleSection'>
-        <H1Title className={classes.voteViewTitle}>Le château de FoxArt</H1Title>
-        <Paragraph className="voteViewDesc">lorem ipsum and whatever description on multiline</Paragraph>
+      <section className={classes.titleSection}>
+        <H1Title className={classes.voteViewTitle}>{props.serviceName}</H1Title>
+        <Paragraph className={classes.voteViewDesc}>{props.serviceDescription}</Paragraph>
         <Wave />
         </section>
-      <section className="voteSection">
+      <section className={classes.voteSection}>
 
         <FormControl component="fieldset">
-          <FormLabel className={classes.noteTextLabel} component="legend">Noter le château de FoxArt</FormLabel>
-          <RadioGroup className={classes.voteViewRadioGroup} aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+          <FormLabel className={classes.noteTextLabel} component="legend">Noter {props.serviceName}</FormLabel>
+          <RadioGroup className={classes.voteViewRadioGroup} aria-label="evaluation" name="eval1" value={value} onChange={handleChange}>
 
             <FormControlLabel value="1" control={<Radio
               className={classes.root}
               disableRipple
               color="default"
               checkedIcon={<span className={clsx(classes.icon1)} >
-                <span className={classes.checkedIcon1} >
-
-                </span>
+                <span className={classes.checkedIcon1} />
+                
               </span>}
               icon={<span className={classes.icon1} />}
               {...props}
@@ -181,9 +190,7 @@ function VoteView(props) {
               disableRipple
               color="default"
               checkedIcon={<span className={clsx(classes.icon2)} >
-                <span className={classes.checkedIcon2} >
-
-                </span>
+                <span className={classes.checkedIcon2}/>
               </span>}
               icon={<span className={classes.icon2} />}
               {...props}
@@ -194,9 +201,7 @@ function VoteView(props) {
               disableRipple
               color="default"
               checkedIcon={<span className={clsx(classes.icon3)} >
-                <span className={classes.checkedIcon3} >
-
-                </span>
+                <span className={classes.checkedIcon3}/>
               </span>}
               icon={<span className={classes.icon3} />}
               {...props}
