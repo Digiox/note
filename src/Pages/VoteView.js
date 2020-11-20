@@ -8,6 +8,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import clsx from 'clsx';
+import {Wave, H1Title, Paragraph} from "../Atoms/Atoms"
 
 import { useState } from 'react';
 
@@ -130,6 +131,13 @@ const useStyles = makeStyles({
   },
   submitButton: {
     marginTop: "10%"
+  },
+
+  voteViewDesc: {
+    textAlign: 'center',
+    paddingTop: '10%',
+     paddingLeft: '5%',
+     paddingRight: '5%',
   }
 });
 
@@ -145,13 +153,10 @@ function VoteView(props) {
   return (
     <div>
       <section className='titleSection'>
-        <h1 className={classes.voteViewTitle}>Le château de FoxArt</h1>
-        <p className="voteViewDesc">lorem ipsum and whatever description on multiline</p>
-        <div class="custom-shape-divider-bottom-1605810039">
-          <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-          </svg>
-        </div></section>
+        <H1Title className={classes.voteViewTitle}>Le château de FoxArt</H1Title>
+        <Paragraph className="voteViewDesc">lorem ipsum and whatever description on multiline</Paragraph>
+        <Wave />
+        </section>
       <section className="voteSection">
 
         <FormControl component="fieldset">
