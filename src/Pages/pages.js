@@ -1,3 +1,3 @@
 import VoteView from './VoteView'
-
-export {VoteView}
+import MainView from "./MainView"
+export {VoteView, MainView}

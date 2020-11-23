@@ -1,6 +1,6 @@
 
 import './App.css';
-import { VoteView } from './Pages/Pages'
+import { MainView, VoteView } from './Pages/Pages'
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 import firebase from "firebase"
 import {
@@ -37,7 +37,7 @@ function App() {
 
     return (
       <Route path={window.location.pathname}>
-        <VoteView serviceName={data.NAME} serviceDescription={data.DESC} />
+        <VoteView voteDatas={data.voteDatas} serviceName={data.NAME} serviceDescription={data.DESC} />
       </Route>
     )
 
@@ -59,7 +59,10 @@ function App() {
       <Router>
 
         <Switch>
-          {data === null ? <h1>loading</h1> : renderRoute()}
+          <Route exact path="/">
+            <MainView />
+          </Route>
+          {data === null ? <MainView /> : renderRoute()}
 
         </Switch>
       </Router>

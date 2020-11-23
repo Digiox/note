@@ -8,11 +8,13 @@ import FormLabel from '@material-ui/core/FormLabel';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import clsx from 'clsx';
-import {Wave, H1Title, Paragraph} from "../Atoms/Atoms"
+import { Wave, H1Title, Paragraph } from "../Atoms/Atoms"
 
 import { useState } from 'react';
+import { HeaderBar } from '../Organisms/Organisms';
+import { defineDataToRenderObject, exceptionalCases, getHigherValueInData, makeDataWithPercent } from '../Functions/functions';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
     '&:hover': {
       backgroundColor: 'transparent',
@@ -120,6 +122,12 @@ const useStyles = makeStyles({
     fontSize: "3em !important",
     fontFamily: "Madina",
     textAlign: "center",
+    [theme.breakpoints.up('md')]: {
+      paddingTop: "10%"
+    },
+    [theme.breakpoints.up('lg')]: {
+      paddingTop: '5%'
+    }
   },
   noteTextLabel: {
     textAlign: "center"
@@ -127,17 +135,29 @@ const useStyles = makeStyles({
   voteViewRadioGroup: {
     marginLeft: "auto",
     marginRight: "auto",
-    marginTop: "16%"
+    marginTop: "10%",
+    [theme.breakpoints.up('md')]: {
+      paddingTop: '0%',
+      marginTop: '5%'
+
+    },
+    [theme.breakpoints.up('lg')]: {
+      paddingTop: '0%',
+      marginTop: '2%'
+
+    }
   },
   submitButton: {
-    marginTop: "10%"
+    marginTop: "3%",
+    width: '30%',
+    alignSelf: 'center'
   },
 
   voteViewDesc: {
     textAlign: 'center',
     paddingTop: '10%',
-     paddingLeft: '5%',
-     paddingRight: '5%',
+    paddingLeft: '5%',
+    paddingRight: '5%',
   },
   titleSection: {
     backgroundColor: '#6B9ED1',
@@ -145,16 +165,94 @@ const useStyles = makeStyles({
     height: '50vh',
   },
   voteSection: {
-    margin: '10%',
+    margin: '5%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    [theme.breakpoints.up('lg')]: {
+      marginTop: '2%'
+    }
+  },
+  userVoteDiv: {
+    marginBottom: '3%',
     display: 'flex',
     justifyContent: 'center',
+    [theme.breakpoints.up('md')]: {
+      flexDirection: 'column',
+      alignSelf: 'center'
+    }
+  },
+  userVoteDot: {
+    borderRadius: "50px",
+    display: 'flex',
+    // backgroundColor: "#F26368",
+    width: "20px",
+    height: "20px",
+
+  },
+  dotDiv: {
+
+    marginLeft: '5%',
+    display: 'flex',
+    [theme.breakpoints.up("md")]: {
+      margin: 'auto'
+    }
   }
-});
+}))
 
 function VoteView(props) {
 
   const classes = useStyles();
   const [value, setValue] = React.useState(null);
+
+  const renderDotStats = (voteData) => {
+    const perfectVoteCount = voteData.P;
+    const mediumVoteCount = voteData.M;
+    const badVoteCount = voteData.B;
+    var HigherData = getHigherValueInData(perfectVoteCount, mediumVoteCount, badVoteCount)
+    
+    
+    // const biggerValue = Math.max(perfectVoteCount.val, mediumVoteCount.val, badVoteCount.val)
+    // [perfectVoteCount, mediumVoteCount, badVoteCount].forEach(element => {
+    //   console.log(element)
+    //   if (element.val === biggerValue) {
+    //     return biggerData = element;
+    //   }
+    // });
+    const caughtException = exceptionalCases(perfectVoteCount, mediumVoteCount, badVoteCount)
+    if (caughtException.exception === true) {
+      if (caughtException.data === null) {
+        return <h2>Pas de vote</h2>
+      }
+      HigherData = caughtException.data
+    }
+    // const makeDataWithPercent = (data, totalOfValues) => {
+    //   return {name: data.name, val: data.val / totalOfValues * 100}
+    // }
+    const transformedData = makeDataWithPercent(HigherData, perfectVoteCount.val+mediumVoteCount.val+badVoteCount.val);
+    const dataToRender = defineDataToRenderObject(transformedData)
+    // switch (transformedData.name) {
+    //   case 'perfect':
+    //     dataToRender = {color: '#54F511', value: transformedData.val}
+    //     break;
+
+    //   case 'medium': 
+    //   dataToRender = {color: '#FFD95B', value: transformedData.val}
+    //     break;
+     
+    //   case 'bad': 
+    //   dataToRender = {color: '#F26368', value: transformedData.val}
+    //     break;
+      
+    // }
+    return (<div className={classes.dotDiv}>
+    <span style={{backgroundColor: dataToRender.color}} className={classes.userVoteDot}>
+
+    </span>
+    <Paragraph>{Math.round(dataToRender.value)}%</Paragraph>
+  </div>)
+    // console.log(Math.max(perfectVoteCount, mediumVoteCount, badVoteCount))
+  }
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -163,12 +261,17 @@ function VoteView(props) {
   return (
     <div>
       <section className={classes.titleSection}>
+        <HeaderBar />
         <H1Title className={classes.voteViewTitle}>{props.serviceName}</H1Title>
         <Paragraph className={classes.voteViewDesc}>{props.serviceDescription}</Paragraph>
         <Wave />
-        </section>
+      </section>
       <section className={classes.voteSection}>
 
+        <div className={classes.userVoteDiv}>
+          <Paragraph>Note des utilisateurs: </Paragraph>
+          {renderDotStats(props.voteDatas)}
+        </div>
         <FormControl component="fieldset">
           <FormLabel className={classes.noteTextLabel} component="legend">Noter {props.serviceName}</FormLabel>
           <RadioGroup className={classes.voteViewRadioGroup} aria-label="evaluation" name="eval1" value={value} onChange={handleChange}>
@@ -179,7 +282,7 @@ function VoteView(props) {
               color="default"
               checkedIcon={<span className={clsx(classes.icon1)} >
                 <span className={classes.checkedIcon1} />
-                
+
               </span>}
               icon={<span className={classes.icon1} />}
               {...props}
@@ -190,7 +293,7 @@ function VoteView(props) {
               disableRipple
               color="default"
               checkedIcon={<span className={clsx(classes.icon2)} >
-                <span className={classes.checkedIcon2}/>
+                <span className={classes.checkedIcon2} />
               </span>}
               icon={<span className={classes.icon2} />}
               {...props}
@@ -201,7 +304,7 @@ function VoteView(props) {
               disableRipple
               color="default"
               checkedIcon={<span className={clsx(classes.icon3)} >
-                <span className={classes.checkedIcon3}/>
+                <span className={classes.checkedIcon3} />
               </span>}
               icon={<span className={classes.icon3} />}
               {...props}

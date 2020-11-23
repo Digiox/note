@@ -3,7 +3,13 @@
     src: url('../fonts/Madina.otf');
 }
 
+@font-face {
+    font-family: "ArimaMadurai";
+    src: url("../fonts/ArimaMadurai-Regular.ttf");
+}
+
 * {
+    font-family: "ArimaMadurai";
     margin: 0;
     padding: 0;
 }
